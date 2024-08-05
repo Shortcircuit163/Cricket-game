@@ -23,6 +23,11 @@ def signup_window():
     signup_frame = tk.Frame(sgnp)
     signup_frame.grid(row=1, column=1, pady = 100)
 
+    def go_home():
+        sgnp.destroy()
+        from Home_screen import home
+        home()
+
     name_var=tk.StringVar()
     username_var=tk.StringVar()
     passw_var=tk.StringVar()
@@ -49,9 +54,10 @@ def signup_window():
 
             new_player_credentials = [name, username, password, 4, 3, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-            with open(r'Data\user_data.csv', 'a', newline='') as append_player_data:
-                datawriter = csv.writer(append_player_data)
-                datawriter.writerow(new_player_credentials)
+            append_player_data =  open(r'Data\user_data.csv', 'a', newline='')
+            datawriter = csv.writer(append_player_data)
+            datawriter.writerow(new_player_credentials)
+            append_player_data.close()
 
             #starterpack------------------------------------
 
@@ -93,7 +99,7 @@ def signup_window():
                     if row3[0] == 'name':
                         continue
                     else:
-                        bowlers_list.append([row3[0], row3[2], row3[3]])
+                        wk_list.append([row3[0], row3[2], row3[3]])
 
                 # Randomly select 1 wk keeper from the list
                 selected_items3 = random.sample(wk_list, 1)
@@ -129,8 +135,11 @@ def signup_window():
                                                 [selected_items3[0][0], 'wk', selected_items3[0][1], selected_items3[0][2]],
                                                 [selected_items4[0][0], 'alr', selected_items4[0][1], selected_items4[0][2]],
                                                 [selected_items4[1][0], 'alr', selected_items4[1][1], selected_items4[1][2]],
-                                                [selected_items4[2][0], 'alr', selected_items4[2][1], selected_items4[2][2]],
-                                                [selected_items4[3][0], 'alr', selected_items4[3][1], selected_items4[3][2]]])
+                                                [selected_items4[2][0], 'alr', selected_items4[2][1], selected_items4[2][2]]
+                                                ])
+            
+            go_home()
+
                     
                     #ADD STARTERPACK HERE
             
